@@ -1664,6 +1664,17 @@ public final class CMSettings {
          */
         public static final String NOTIFICATION_LIGHT_PULSE_CUSTOM_VALUES =
                 "notification_light_pulse_custom_values";
+                
+        /**
+         * Allows setting the radius for lockscreen blur
+         * @hide
+         */
+        public static final String LOCKSCREEN_BLUR_RADIUS = 
+				"lockscreen_blur_radius";
+
+        /** @hide */
+        public static final Validator LOCKSCREEN_BLUR_RADIUS_VALIDATOR =
+                new InclusiveIntegerRangeValidator(0, 25);
 
         /** @hide */
         public static final Validator NOTIFICATION_LIGHT_PULSE_CUSTOM_VALUES_VALIDATOR =
@@ -2017,6 +2028,7 @@ public final class CMSettings {
                     TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
             VALIDATORS.put(__MAGICAL_TEST_PASSING_ENABLER,
                     __MAGICAL_TEST_PASSING_ENABLER_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_BLUR_RADIUS, LOCKSCREEN_BLUR_RADIUS_VALIDATOR);
         };
         // endregion
     }
