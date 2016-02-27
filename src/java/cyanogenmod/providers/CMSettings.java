@@ -1676,6 +1676,18 @@ public final class CMSettings {
         public static final Validator LOCKSCREEN_BLUR_RADIUS_VALIDATOR =
                 new InclusiveIntegerRangeValidator(0, 25);
 
+        /**
+         * Allows to show the background activity back the lockscreen
+         * 0 = off
+         * 1 = on
+         * @hide
+         */
+        public static final String LOCKSCREEN_SEE_THROUGH = 
+				"lockscreen_see_through";
+
+        /** @hide */
+        public static final Validator LOCKSCREEN_SEE_THROUGH_VALIDATOR = sBooleanValidator;
+
         /** @hide */
         public static final Validator NOTIFICATION_LIGHT_PULSE_CUSTOM_VALUES_VALIDATOR =
                 new Validator() {
@@ -2029,6 +2041,7 @@ public final class CMSettings {
             VALIDATORS.put(__MAGICAL_TEST_PASSING_ENABLER,
                     __MAGICAL_TEST_PASSING_ENABLER_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_BLUR_RADIUS, LOCKSCREEN_BLUR_RADIUS_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_SEE_THROUGH, LOCKSCREEN_SEE_THROUGH_VALIDATOR);
         };
         // endregion
     }
