@@ -1677,6 +1677,40 @@ public final class CMSettings {
                 new InclusiveIntegerRangeValidator(0, 25);
 
         /**
+         * Allows setting the scale for lockscreen blur
+         * @hide
+         */
+        public static final String LOCKSCREEN_BLUR_SCALE = 
+				"lockscreen_blur_scale";
+
+        /** @hide */
+        public static final Validator LOCKSCREEN_BLUR_SCALE_VALIDATOR =
+                new InclusiveIntegerRangeValidator(0, 25);
+
+
+        /**
+         * Allows setting the radius for statusbar blur
+         * @hide
+         */
+        public static final String STATUSBAR_BLUR_RADIUS = 
+				"statusbar_blur_radius";
+
+        /** @hide */
+        public static final Validator STATUSBAR_BLUR_RADIUS_VALIDATOR =
+                new InclusiveIntegerRangeValidator(0, 25);
+
+        /**
+         * Allows setting the scale for statusbar blur
+         * @hide
+         */
+        public static final String STATUSBAR_BLUR_SCALE = 
+				"statusbar_blur_scale";
+
+        /** @hide */
+        public static final Validator STATUSBAR_BLUR_SCALE_VALIDATOR =
+                new InclusiveIntegerRangeValidator(0, 25);
+
+        /**
          * Allows to show the background activity back the lockscreen
          * 0 = off
          * 1 = on
@@ -2041,6 +2075,9 @@ public final class CMSettings {
             VALIDATORS.put(__MAGICAL_TEST_PASSING_ENABLER,
                     __MAGICAL_TEST_PASSING_ENABLER_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_BLUR_RADIUS, LOCKSCREEN_BLUR_RADIUS_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_BLUR_SCALE, LOCKSCREEN_BLUR_SCALE_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_BLUR_RADIUS, STATUSBAR_BLUR_RADIUS_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_BLUR_SCALE, STATUSBAR_BLUR_SCALE_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_SEE_THROUGH, LOCKSCREEN_SEE_THROUGH_VALIDATOR);
         };
         // endregion
