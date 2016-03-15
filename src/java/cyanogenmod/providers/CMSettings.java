@@ -1818,16 +1818,6 @@ public final class CMSettings {
                 sBooleanValidator;
 
         /**
-         * Whether or not to respect the network presentation indicator of outgoing calls
-         */
-        public static final String CONNECTED_LINE_IDENTIFICATION =
-                "connected_line_identification";
-
-        /** @hide */
-        public static final Validator CONNECTED_LINE_IDENTIFICATION_VALIDATOR =
-                sBooleanValidator;
-
-        /**
          * I can haz more bukkits
          * @hide
          */
@@ -2082,8 +2072,6 @@ public final class CMSettings {
             VALIDATORS.put(ZEN_PRIORITY_ALLOW_LIGHTS, ZEN_PRIORITY_ALLOW_LIGHTS_VALIDATOR);
             VALIDATORS.put(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK,
                     TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
-            VALIDATORS.put(CONNECTED_LINE_IDENTIFICATION,
-                    CONNECTED_LINE_IDENTIFICATION_VALIDATOR);
             VALIDATORS.put(__MAGICAL_TEST_PASSING_ENABLER,
                     __MAGICAL_TEST_PASSING_ENABLER_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_BLUR_RADIUS, LOCKSCREEN_BLUR_RADIUS_VALIDATOR);
@@ -2727,6 +2715,25 @@ public final class CMSettings {
          * @hide
          */
         public static final String LOCK_PASS_TO_SECURITY_VIEW = "lock_screen_pass_to_security_view";
+
+        /**
+         * Whether touch hovering is enabled on supported hardware
+         * @hide
+         */
+        public static final String FEATURE_TOUCH_HOVERING = "feature_touch_hovering";
+
+        /**
+         * Vibrator intensity setting for supported devices
+         * @hide
+         */
+        public static final String VIBRATOR_INTENSITY = "vibrator_intensity";
+
+        /**
+         * Display gamma calibration values
+         * Suffix this with the control to set
+         * @hide
+         */
+        public static final String DISPLAY_GAMMA_CALIBRATION_PREFIX = "display_gamma_";
 
         // endregion
 
