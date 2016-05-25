@@ -1739,20 +1739,6 @@ public final class CMSettings {
         public static final Validator STATUSBAR_BLUR_SCALE_VALIDATOR =
                 new InclusiveIntegerRangeValidator(0, 25);
 
-        /**
-         * Allows to show the background activity back the lockscreen
-         * 0 = off
-         * 1 = on
-         * @hide
-         */
-        public static final String LOCKSCREEN_SEE_THROUGH = 
-				"lockscreen_see_through";
-
-        /** @hide */
-        public static final Validator LOCKSCREEN_SEE_THROUGH_VALIDATOR = sBooleanValidator;
-
-=======
->>>>>>> parent of 0473a25...  LockScreen See Through(3/3):src/java/cyanogenmod/providers/CMSettings.java
         /** @hide */
         public static final Validator NOTIFICATION_LIGHT_PULSE_CUSTOM_VALUES_VALIDATOR =
                 new Validator() {
@@ -2114,7 +2100,6 @@ public final class CMSettings {
                     TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
             VALIDATORS.put(__MAGICAL_TEST_PASSING_ENABLER,
                     __MAGICAL_TEST_PASSING_ENABLER_VALIDATOR);
-            VALIDATORS.put(LOCKSCREEN_BLUR_SCALE, LOCKSCREEN_BLUR_SCALE_VALIDATOR);
             VALIDATORS.put(STATUSBAR_BLUR_RADIUS, STATUSBAR_BLUR_RADIUS_VALIDATOR);
             VALIDATORS.put(STATUSBAR_BLUR_SCALE, STATUSBAR_BLUR_SCALE_VALIDATOR);
         };
@@ -2818,12 +2803,6 @@ public final class CMSettings {
          * @hide
          */
         public static final String CM_SETUP_WIZARD_COMPLETED = "cm_setup_wizard_completed";
-
-        /**
-         * Whether lock screen bluring is enabled on devices that support this feature
-         * @hide
-         */
-        public static final String LOCK_SCREEN_BLUR_ENABLED = "lock_screen_blur_enabled";
 
 
         // endregion
