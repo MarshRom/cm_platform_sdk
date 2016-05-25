@@ -1718,29 +1718,6 @@ public final class CMSettings {
                 "notification_light_pulse_custom_values";
                 
         /**
-         * Allows setting the radius for lockscreen blur
-         * @hide
-         */
-        public static final String LOCKSCREEN_BLUR_RADIUS = 
-				"lockscreen_blur_radius";
-
-        /** @hide */
-        public static final Validator LOCKSCREEN_BLUR_RADIUS_VALIDATOR =
-                new InclusiveIntegerRangeValidator(0, 25);
-
-        /**
-         * Allows setting the scale for lockscreen blur
-         * @hide
-         */
-        public static final String LOCKSCREEN_BLUR_SCALE = 
-				"lockscreen_blur_scale";
-
-        /** @hide */
-        public static final Validator LOCKSCREEN_BLUR_SCALE_VALIDATOR =
-                new InclusiveIntegerRangeValidator(0, 25);
-
-
-        /**
          * Allows setting the radius for statusbar blur
          * @hide
          */
@@ -1774,6 +1751,8 @@ public final class CMSettings {
         /** @hide */
         public static final Validator LOCKSCREEN_SEE_THROUGH_VALIDATOR = sBooleanValidator;
 
+=======
+>>>>>>> parent of 0473a25...  LockScreen See Through(3/3):src/java/cyanogenmod/providers/CMSettings.java
         /** @hide */
         public static final Validator NOTIFICATION_LIGHT_PULSE_CUSTOM_VALUES_VALIDATOR =
                 new Validator() {
@@ -2135,11 +2114,9 @@ public final class CMSettings {
                     TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
             VALIDATORS.put(__MAGICAL_TEST_PASSING_ENABLER,
                     __MAGICAL_TEST_PASSING_ENABLER_VALIDATOR);
-            VALIDATORS.put(LOCKSCREEN_BLUR_RADIUS, LOCKSCREEN_BLUR_RADIUS_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_BLUR_SCALE, LOCKSCREEN_BLUR_SCALE_VALIDATOR);
             VALIDATORS.put(STATUSBAR_BLUR_RADIUS, STATUSBAR_BLUR_RADIUS_VALIDATOR);
             VALIDATORS.put(STATUSBAR_BLUR_SCALE, STATUSBAR_BLUR_SCALE_VALIDATOR);
-            VALIDATORS.put(LOCKSCREEN_SEE_THROUGH, LOCKSCREEN_SEE_THROUGH_VALIDATOR);
         };
         // endregion
     }
