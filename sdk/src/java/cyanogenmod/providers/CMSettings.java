@@ -530,6 +530,11 @@ public final class CMSettings {
         /** @hide */
         public static boolean putStringForUser(ContentResolver resolver, String name, String value,
                int userId) {
+            if (MOVED_TO_SECURE.contains(name)) {
+                Log.w(TAG, "Setting " + name + " has moved from CMSettings.System"
+                        + " to CMSettings.Secure, value is unchanged.");
+                return false;
+            }
             return sNameValueCache.putStringForUser(resolver, name, value, userId);
         }
 
@@ -1482,6 +1487,16 @@ public final class CMSettings {
                 sBooleanValidator;
 
         /**
+         * Whether keyguard will rotate to landscape mode
+         * 0 = false, 1 = true
+         */
+        public static final String LOCKSCREEN_ROTATION = "lockscreen_rotation";
+
+        /** @hide */
+        public static final Validator LOCKSCREEN_ROTATION_VALIDATOR =
+                sBooleanValidator;
+
+        /**
          * Whether to show the alarm clock icon in the status bar.
          * 0 = 0ff, 1 = on
          */
@@ -1877,7 +1892,7 @@ public final class CMSettings {
          * me bro
          */
         public static final Validator __MAGICAL_TEST_PASSING_ENABLER_VALIDATOR =
-                sBooleanValidator;
+                sAlwaysTrueValidator;
 
         /**
          * @hide
@@ -2081,6 +2096,7 @@ public final class CMSettings {
             VALIDATORS.put(BLUETOOTH_ACCEPT_ALL_FILES, BLUETOOTH_ACCEPT_ALL_FILES_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
                     LOCKSCREEN_PIN_SCRAMBLE_LAYOUT_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_ROTATION, LOCKSCREEN_ROTATION_VALIDATOR);
             VALIDATORS.put(SHOW_ALARM_ICON, SHOW_ALARM_ICON_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_IME_SWITCHER, STATUS_BAR_IME_SWITCHER_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN,
@@ -2155,6 +2171,13 @@ public final class CMSettings {
                 CALL_METHOD_GET_SECURE,
                 CALL_METHOD_PUT_SECURE);
 
+        /** @hide */
+        protected static final ArraySet<String> MOVED_TO_GLOBAL;
+        static {
+            MOVED_TO_GLOBAL = new ArraySet<>(1);
+            MOVED_TO_GLOBAL.add(Global.DEV_FORCE_SHOW_NAVBAR);
+        }
+
         // region Methods
 
         /**
@@ -2218,6 +2241,11 @@ public final class CMSettings {
         /** @hide */
         public static String getStringForUser(ContentResolver resolver, String name,
                 int userId) {
+            if (MOVED_TO_GLOBAL.contains(name)) {
+                Log.w(TAG, "Setting " + name + " has moved from CMSettings.Secure"
+                        + " to CMSettings.Global, value is unchanged.");
+                return CMSettings.Global.getStringForUser(resolver, name, userId);
+            }
             return sNameValueCache.getStringForUser(resolver, name, userId);
         }
 
@@ -2235,6 +2263,11 @@ public final class CMSettings {
         /** @hide */
         public static boolean putStringForUser(ContentResolver resolver, String name, String value,
                int userId) {
+            if (MOVED_TO_GLOBAL.contains(name)) {
+                Log.w(TAG, "Setting " + name + " has moved from CMSettings.Secure"
+                        + " to CMSettings.Global, value is unchanged.");
+                return false;
+            }
             return sNameValueCache.putStringForUser(resolver, name, value, userId);
         }
 
@@ -2545,6 +2578,7 @@ public final class CMSettings {
 
         /**
          * Developer options - Navigation Bar show switch
+         * @deprecated
          * @hide
          */
         public static final String DEV_FORCE_SHOW_NAVBAR = "dev_force_show_navbar";
@@ -2818,6 +2852,19 @@ public final class CMSettings {
          * @hide
          */
         public static final String CM_SETUP_WIZARD_COMPLETED = "cm_setup_wizard_completed";
+
+        /**
+         * Whether lock screen bluring is enabled on devices that support this feature
+         * @hide
+         */
+        public static final String LOCK_SCREEN_BLUR_ENABLED = "lock_screen_blur_enabled";
+
+        /**
+         * Whether to display weather information on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_ENABLED = "lock_screen_weather_enabled";
+
 
         // endregion
 
@@ -3360,7 +3407,20 @@ public final class CMSettings {
          * <p>{@link cyanogenmod.providers.WeatherContract.WeatherColumns.TempUnit#FAHRENHEIT}</p>
          */
         public static final String WEATHER_TEMPERATURE_UNIT = "weather_temperature_unit";
+
+        /**
+         * Developer options - Navigation Bar show switch
+         * @hide
+         */
+        public static final String DEV_FORCE_SHOW_NAVBAR = "dev_force_show_navbar";
         // endregion
+
+        /**
+         * I can haz more bukkits
+         * @hide
+         */
+        public static final String __MAGICAL_TEST_PASSING_ENABLER =
+                "___magical_test_passing_enabler";
 
         /**
          * @hide

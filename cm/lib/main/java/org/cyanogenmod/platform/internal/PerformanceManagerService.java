@@ -41,7 +41,7 @@ import cyanogenmod.power.PerformanceManagerInternal;
 import cyanogenmod.providers.CMSettings;
 
 /** @hide */
-public class PerformanceManagerService extends SystemService {
+public class PerformanceManagerService extends CMSystemService {
 
     private static final String TAG = "PerformanceManager";
 
@@ -105,14 +105,13 @@ public class PerformanceManagerService extends SystemService {
     }
 
     @Override
+    public String getFeatureDeclaration() {
+        return CMContextConstants.Features.PERFORMANCE;
+    }
+
+    @Override
     public void onStart() {
-        if (mContext.getPackageManager().hasSystemFeature(
-                CMContextConstants.Features.PERFORMANCE)) {
-            publishBinderService(CMContextConstants.CM_PERFORMANCE_SERVICE, mBinder);
-        } else {
-            Log.wtf(TAG, "CM performance service started by system server but feature xml not" +
-                    " declared. Not publishing binder service!");
-        }
+        publishBinderService(CMContextConstants.CM_PERFORMANCE_SERVICE, mBinder);
         publishLocalService(PerformanceManagerInternal.class, new LocalService());
     }
 
@@ -179,6 +178,10 @@ public class PerformanceManagerService extends SystemService {
             Slog.v(TAG, String.format(
                 "setPowerProfileInternal(profile=%d, fromUser=%b)",
                 profile, fromUser));
+        }
+        if (mPm == null) {
+            Slog.e(TAG, "System is not ready, dropping profile request");
+            return false;
         }
         if (profile < 0 || profile > mNumProfiles) {
             Slog.e(TAG, "Invalid profile: " + profile);
@@ -248,6 +251,12 @@ public class PerformanceManagerService extends SystemService {
     }
 
     private void cpuBoostInternal(int duration) {
+        synchronized (PerformanceManagerService.this) {
+            if (mPm == null) {
+                Slog.e(TAG, "System is not ready, dropping cpu boost request");
+                return;
+            }
+        }
         if (duration > 0 && duration <= MAX_CPU_BOOST_TIME) {
             // Don't send boosts if we're in another power profile
             if (mCurrentProfile == PerformanceManager.PROFILE_POWER_SAVE ||
@@ -325,6 +334,12 @@ public class PerformanceManagerService extends SystemService {
 
         @Override
         public void launchBoost(int pid, String packageName) {
+            synchronized (PerformanceManagerService.this) {
+                if (mPm == null) {
+                    Slog.e(TAG, "System is not ready, dropping launch boost request");
+                    return;
+                }
+            }
             // Don't send boosts if we're in another power profile
             if (mCurrentProfile == PerformanceManager.PROFILE_POWER_SAVE ||
                     mCurrentProfile == PerformanceManager.PROFILE_HIGH_PERFORMANCE) {
