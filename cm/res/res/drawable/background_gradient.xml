@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Testing 
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+<!-- fill stroke color  -->
+<stroke
+    android:width="1dip"
+    android:color="#bd5426" />
+<!-- gradient color   -->
+<gradient
+    android:angle="-270"
+    android:endColor="#B4BBBD"
+    android:centerColor="#009688"
+    android:startColor="#D9DFE0" />
