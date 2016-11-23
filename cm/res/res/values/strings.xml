@@ -107,6 +107,14 @@
     <string name="perf_profile_bias_power">Efficiency</string>
     <string name="perf_profile_bias_perf">Quick</string>
 
+    <!-- Performance profiles -->
+    <string name="perf_profile_pwrsv_summary">Maximum power savings. Reduces device performance, disables background tasks and data, disables animations, and reduces display frame rate</string>
+    <string name="perf_profile_bal_summary">Balance of optimal performance and power characteristics</string>
+    <string name="perf_profile_perf_summary">High performance mode. Useful for applications requiring low latency and highest throughput when power consumption is not a concern</string>
+    <string name="perf_profile_bias_power_summary">Favor power savings. Limit maximum CPU power and optimize for power saving at the cost of higher latency</string>
+    <string name="perf_profile_bias_perf_summary">Favor performance. Reduces latency with slightly increased power consumption</string>
+
+
     <!-- LiveDisplay strings -->
     <string name="live_display_title" translatable="false">LiveDisplay</string>
     <string name="live_display_auto">Automatic</string>
@@ -226,13 +234,11 @@
     <string name="qs_themes_label">Themes</string>
     <string name="qs_themes_content_description">Customize your theme</string>
 
-    <!-- Custom booot dexopt -->
-    <string name="android_upgrading_starting_apps">Starting apps\u2026</string>
-    <string name="android_upgrading_fstrim">Optimizing storage\u2026</string>
-    <string name="android_upgrading_complete">Preparing to start\u2026</string>
-    <string name="android_upgrading_complete_details">Optimization completed.</string>
-    <string name="android_preparing_apk">Preparing %1$s\u2026</string>
-    <string name="android_preparing_apk_obscured">Preparing apps\u2026</string>
-    <string name="android_upgrading_apk">%1$d of %2$d apps</string>
+    <!-- Privacy Guard -->
+    <string name="privacy_guard_manager_title">Privacy Guard</string>
+
+    <!-- Permissions used by remote preferences -->
+    <string name="permlab_manageRemotePrefs">manage remote settings</string>
+    <string name="permdesc_manageRemotePrefs">Allows an app to manage remote settings</string>
 
 </resources>

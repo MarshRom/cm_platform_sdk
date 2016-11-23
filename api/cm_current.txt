@@ -674,6 +674,7 @@ package cyanogenmod.os {
     field public static final int DRAGON_FRUIT = 4; // 0x4
     field public static final int ELDERBERRY = 5; // 0x5
     field public static final int FIG = 6; // 0x6
+    field public static final int GUAVA = 7; // 0x7
   }
 
   public final class Concierge {
@@ -705,6 +706,7 @@ package cyanogenmod.platform {
     field public static final java.lang.String MANAGE_ALARMS = "cyanogenmod.permission.MANAGE_ALARMS";
     field public static final java.lang.String MANAGE_LIVEDISPLAY = "cyanogenmod.permission.MANAGE_LIVEDISPLAY";
     field public static final java.lang.String MANAGE_PERSISTENT_STORAGE = "cyanogenmod.permission.MANAGE_PERSISTENT_STORAGE";
+    field public static final java.lang.String MANAGE_REMOTE_PREFERENCES = "cyanogenmod.permission.MANAGE_REMOTE_PREFERENCES";
     field public static final java.lang.String MODIFY_MSIM_PHONE_STATE = "cyanogenmod.permission.MODIFY_MSIM_PHONE_STATE";
     field public static final java.lang.String MODIFY_NETWORK_SETTINGS = "cyanogenmod.permission.MODIFY_NETWORK_SETTINGS";
     field public static final java.lang.String MODIFY_PROFILES = "cyanogenmod.permission.MODIFY_PROFILES";
@@ -736,18 +738,19 @@ package cyanogenmod.platform {
 
   public static final class R.attr {
     ctor public R.attr();
+    field public static final int minSummaryLines = 1057030154; // 0x3f01000a
+    field public static final int replacesKey = 1057030153; // 0x3f010009
+    field public static final int requiresAction = 1057030152; // 0x3f010008
+    field public static final int requiresConfig = 1057030148; // 0x3f010004
+    field public static final int requiresFeature = 1057030147; // 0x3f010003
+    field public static final int requiresOwner = 1057030150; // 0x3f010006
+    field public static final int requiresPackage = 1057030146; // 0x3f010002
+    field public static final int requiresProperty = 1057030149; // 0x3f010005
+    field public static final int xmlRes = 1057030151; // 0x3f010007
   }
 
   public static final class R.bool {
     ctor public R.bool();
-  }
-
-  public static final class R.color {
-    ctor public R.color();
-  }
-
-  public static final class R.dimen {
-    ctor public R.dimen();
   }
 
   public static final class R.drawable {
@@ -760,10 +763,6 @@ package cyanogenmod.platform {
 
   public static final class R.integer {
     ctor public R.integer();
-  }
-
-  public static final class R.layout {
-    ctor public R.layout();
   }
 
   public static final class R.string {
@@ -779,11 +778,15 @@ package cyanogenmod.platform {
 package cyanogenmod.power {
 
   public class PerformanceManager {
+    method public cyanogenmod.power.PerformanceProfile getActivePowerProfile();
     method public static cyanogenmod.power.PerformanceManager getInstance(android.content.Context);
     method public int getNumberOfProfiles();
     method public int getPowerProfile();
+    method public cyanogenmod.power.PerformanceProfile getPowerProfile(int);
+    method public java.util.SortedSet<cyanogenmod.power.PerformanceProfile> getPowerProfiles();
     method public boolean getProfileHasAppProfiles(int);
     method public boolean setPowerProfile(int);
+    method public boolean setPowerProfile(cyanogenmod.power.PerformanceProfile);
     field public static final java.lang.String POWER_PROFILE_CHANGED = "cyanogenmod.power.PROFILE_CHANGED";
     field public static final int PROFILE_BALANCED = 1; // 0x1
     field public static final int PROFILE_BIAS_PERFORMANCE = 4; // 0x4
@@ -791,6 +794,175 @@ package cyanogenmod.power {
     field public static final int PROFILE_HIGH_PERFORMANCE = 2; // 0x2
     field public static final int PROFILE_POWER_SAVE = 0; // 0x0
     field public static final java.lang.String TAG = "PerformanceManager";
+  }
+
+  public class PerformanceProfile implements java.lang.Comparable android.os.Parcelable {
+    ctor public PerformanceProfile(int, float, java.lang.String, java.lang.String, boolean);
+    method public int compareTo(cyanogenmod.power.PerformanceProfile);
+    method public int describeContents();
+    method public java.lang.String getDescription();
+    method public int getId();
+    method public java.lang.String getName();
+    method public float getWeight();
+    method public boolean isBoostEnabled();
+    method public void writeToParcel(android.os.Parcel, int);
+    field public static final android.os.Parcelable.Creator<cyanogenmod.power.PerformanceProfile> CREATOR;
+  }
+
+}
+
+package cyanogenmod.preference {
+
+  public class CMGlobalSettingSwitchPreference extends cyanogenmod.preference.SelfRemovingSwitchPreference {
+    ctor public CMGlobalSettingSwitchPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public CMGlobalSettingSwitchPreference(android.content.Context, android.util.AttributeSet);
+    ctor public CMGlobalSettingSwitchPreference(android.content.Context);
+    method protected boolean getPersistedBoolean(boolean);
+    method protected boolean isPersisted();
+    method protected boolean persistBoolean(boolean);
+  }
+
+  public class CMSecureSettingListPreference extends cyanogenmod.preference.SelfRemovingListPreference {
+    ctor public CMSecureSettingListPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public CMSecureSettingListPreference(android.content.Context, android.util.AttributeSet);
+    method public int getIntValue(int);
+    method protected java.lang.String getPersistedString(java.lang.String);
+    method protected boolean isPersisted();
+    method protected boolean persistString(java.lang.String);
+  }
+
+  public class CMSecureSettingSwitchPreference extends cyanogenmod.preference.SelfRemovingSwitchPreference {
+    ctor public CMSecureSettingSwitchPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public CMSecureSettingSwitchPreference(android.content.Context, android.util.AttributeSet);
+    ctor public CMSecureSettingSwitchPreference(android.content.Context);
+    method protected boolean getPersistedBoolean(boolean);
+    method protected boolean isPersisted();
+    method protected boolean persistBoolean(boolean);
+  }
+
+  public class CMSystemSettingDropDownPreference extends cyanogenmod.preference.SelfRemovingDropDownPreference {
+    ctor public CMSystemSettingDropDownPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public CMSystemSettingDropDownPreference(android.content.Context, android.util.AttributeSet);
+    method public int getIntValue(int);
+    method protected java.lang.String getPersistedString(java.lang.String);
+    method protected boolean isPersisted();
+    method protected boolean persistString(java.lang.String);
+  }
+
+  public class CMSystemSettingListPreference extends cyanogenmod.preference.SelfRemovingListPreference {
+    ctor public CMSystemSettingListPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public CMSystemSettingListPreference(android.content.Context, android.util.AttributeSet);
+    method public int getIntValue(int);
+    method protected java.lang.String getPersistedString(java.lang.String);
+    method protected boolean isPersisted();
+    method protected boolean persistString(java.lang.String);
+  }
+
+  public class CMSystemSettingSwitchPreference extends cyanogenmod.preference.SelfRemovingSwitchPreference {
+    ctor public CMSystemSettingSwitchPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public CMSystemSettingSwitchPreference(android.content.Context, android.util.AttributeSet);
+    ctor public CMSystemSettingSwitchPreference(android.content.Context);
+    method protected boolean getPersistedBoolean(boolean);
+    method protected boolean isPersisted();
+    method protected boolean persistBoolean(boolean);
+  }
+
+  public class RemotePreference extends cyanogenmod.preference.SelfRemovingPreference {
+    ctor public RemotePreference(android.content.Context, android.util.AttributeSet, int, int);
+    ctor public RemotePreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public RemotePreference(android.content.Context, android.util.AttributeSet);
+    method public android.content.Intent getReceiverIntent();
+    method protected java.lang.String getRemoteKey(android.os.Bundle);
+    method public void onAttached();
+    method public void onDetached();
+    method public void onRemoteUpdated(android.os.Bundle);
+    field public static final java.lang.String ACTION_REFRESH_PREFERENCE = "cyanogenmod.intent.action.REFRESH_PREFERENCE";
+    field public static final java.lang.String ACTION_UPDATE_PREFERENCE = "cyanogenmod.intent.action.UPDATE_PREFERENCE";
+    field public static final java.lang.String EXTRA_ENABLED = ":cm:pref_enabled";
+    field public static final java.lang.String EXTRA_KEY = ":cm:pref_key";
+    field public static final java.lang.String EXTRA_SUMMARY = ":cm:pref_summary";
+    field public static final java.lang.String META_REMOTE_KEY = "org.cyanogenmod.settings.summary.key";
+    field public static final java.lang.String META_REMOTE_RECEIVER = "org.cyanogenmod.settings.summary.receiver";
+    field protected final android.content.Context mContext;
+  }
+
+  public class RemotePreferenceUpdater extends android.content.BroadcastReceiver {
+    ctor public RemotePreferenceUpdater();
+    method protected boolean fillResultExtras(android.content.Context, java.lang.String, android.os.Bundle);
+    method protected java.lang.String getSummary(android.content.Context, java.lang.String);
+    method public static void notifyChanged(android.content.Context, java.lang.String);
+    method public void onReceive(android.content.Context, android.content.Intent);
+  }
+
+  public class SecureSettingSwitchPreference extends cyanogenmod.preference.SelfRemovingSwitchPreference {
+    ctor public SecureSettingSwitchPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public SecureSettingSwitchPreference(android.content.Context, android.util.AttributeSet);
+    ctor public SecureSettingSwitchPreference(android.content.Context);
+    method protected boolean getPersistedBoolean(boolean);
+    method protected boolean isPersisted();
+    method protected boolean persistBoolean(boolean);
+  }
+
+  public class SelfRemovingDropDownPreference extends DropDownPreference {
+    ctor public SelfRemovingDropDownPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public SelfRemovingDropDownPreference(android.content.Context, android.util.AttributeSet);
+    ctor public SelfRemovingDropDownPreference(android.content.Context);
+    method public boolean isAvailable();
+    method public void onBindViewHolder(PreferenceViewHolder);
+    method public void setAvailable(boolean);
+  }
+
+  public class SelfRemovingListPreference extends ListPreference {
+    ctor public SelfRemovingListPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public SelfRemovingListPreference(android.content.Context, android.util.AttributeSet);
+    ctor public SelfRemovingListPreference(android.content.Context);
+    method public boolean isAvailable();
+    method public void onBindViewHolder(PreferenceViewHolder);
+    method public void setAvailable(boolean);
+  }
+
+  public class SelfRemovingPreference extends Preference {
+    ctor public SelfRemovingPreference(android.content.Context, android.util.AttributeSet, int, int);
+    ctor public SelfRemovingPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public SelfRemovingPreference(android.content.Context, android.util.AttributeSet);
+    ctor public SelfRemovingPreference(android.content.Context);
+    method public boolean isAvailable();
+    method public void onBindViewHolder(PreferenceViewHolder);
+    method public void setAvailable(boolean);
+  }
+
+  public class SelfRemovingSwitchPreference extends SwitchPreference {
+    ctor public SelfRemovingSwitchPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public SelfRemovingSwitchPreference(android.content.Context, android.util.AttributeSet);
+    ctor public SelfRemovingSwitchPreference(android.content.Context);
+    method public boolean isAvailable();
+    method public void onBindViewHolder(PreferenceViewHolder);
+    method public void setAvailable(boolean);
+  }
+
+  public class SettingsHelper {
+    method public static synchronized cyanogenmod.preference.SettingsHelper get(android.content.Context);
+    method public boolean getBoolean(android.net.Uri, boolean);
+    method public int getInt(android.net.Uri, int);
+    method public java.lang.String getString(android.net.Uri);
+    method public void putBoolean(android.net.Uri, boolean);
+    method public void putInt(android.net.Uri, int);
+    method public void putString(android.net.Uri, java.lang.String);
+    method public void startWatching(cyanogenmod.preference.SettingsHelper.OnSettingsChangeListener, android.net.Uri...);
+    method public void stopWatching(cyanogenmod.preference.SettingsHelper.OnSettingsChangeListener);
+  }
+
+  public static abstract interface SettingsHelper.OnSettingsChangeListener {
+    method public abstract void onSettingsChanged(android.net.Uri);
+  }
+
+  public class SystemSettingSwitchPreference extends cyanogenmod.preference.SelfRemovingSwitchPreference {
+    ctor public SystemSettingSwitchPreference(android.content.Context, android.util.AttributeSet, int);
+    ctor public SystemSettingSwitchPreference(android.content.Context, android.util.AttributeSet);
+    ctor public SystemSettingSwitchPreference(android.content.Context);
+    method protected boolean getPersistedBoolean(boolean);
+    method protected boolean isPersisted();
+    method protected boolean persistBoolean(boolean);
   }
 
 }
@@ -848,7 +1020,7 @@ package cyanogenmod.profiles {
     field public static final int PROFILE_CONNECTION_SYNC = 5; // 0x5
     field public static final int PROFILE_CONNECTION_WIFI = 1; // 0x1
     field public static final int PROFILE_CONNECTION_WIFIAP = 2; // 0x2
-    field public static final int PROFILE_CONNECTION_WIMAX = 3; // 0x3
+    field public static final deprecated int PROFILE_CONNECTION_WIMAX = 3; // 0x3
   }
 
   public static class ConnectionSettings.BooleanState {
@@ -1042,6 +1214,7 @@ package cyanogenmod.providers {
     field public static final java.lang.String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
     field public static final java.lang.String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     field public static final java.lang.String STATUS_BAR_SHOW_WEATHER = "status_bar_show_weather";
+    field public static final java.lang.String STYLUS_ICON_ENABLED = "stylus_icon_enabled";
     field public static final java.lang.String SWAP_VOLUME_KEYS_ON_ROTATION = "swap_volume_keys_on_rotation";
     field public static final java.lang.String SYSTEM_PROFILES_ENABLED = "system_profiles_enabled";
     field public static final java.lang.String SYS_PROP_CM_SETTING_VERSION = "sys.cm_settings_system_version";
